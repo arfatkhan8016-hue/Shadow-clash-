@@ -1,0 +1,19 @@
+name: Validate Unity project
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Unity project structure
+        run: |
+          test -d Assets
+          test -d ProjectSettings
+          test -f ProjectSettings/ProjectVersion.txt
+          echo "Unity project structure found."
+          
